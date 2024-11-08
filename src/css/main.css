@@ -1,327 +1,190 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Slab:wght@400;500;700&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-    body {
-        @apply text-base;
-    }
-    h1,
-    .h1,
-    h2,
-    .h2,
-    h3,
-    .h3,
-    h4,
-    .h4,
-    h5,
-    h6 {
-        @apply break-words;
-        line-height: 1.2;
-    }
-}
-
-@layer components {
-    .sb-markdown {
-        @apply leading-relaxed;
-        a {
-            @apply underline transition duration-200 ease-in;
-        }
-        a:hover {
-            @apply text-primary;
-        }
-        b,
-        strong {
-            @apply font-bold;
-        }
-        em {
-            @apply italic;
-        }
-        * + * {
-            margin-top: 1.5em;
-        }
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            margin-top: 3.5rem;
-            &:first-child {
-                margin-top: 0;
-            }
-        }
-        h1+h2,
-        h2+h3,
-        h3+h4,
-        h4+h5,
-        h5+h6 {
-            margin-top: 1.5rem;
-        }
-        ol {
-            @apply list-decimal;
-            padding-left: 1.25em;
-        }
-        ul {
-            @apply list-disc;
-            padding-left: 1.25em;
-        }
-        li > ul,
-        li > ol {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuji Client - Minecraft 1.8.8</title>
+    <style>
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        li + li {
-            margin-top: 0.5rem;
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
         }
-        blockquote {
-            @apply border-l-4 border-current;
-            font-size: 1.25em;
-            line-height: 1.4;
-            padding-left: 1.25em;
-            &:not(:first-child) {
-                margin-top: 2.5rem;
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #888;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,1)),
+                        url('/placeholder.svg?height=800&width=1200') center/cover;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #fff;
+            color: #000;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #888;
+            transform: translateY(-2px);
+        }
+
+        .features {
+            padding: 4rem 2rem;
+            background-color: #111;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .feature-card {
+            background-color: #000;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        .feature-card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #111;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
             }
-            &:not(:last-child) {
-                margin-bottom: 2.5rem;
-            }
-        }
-        pre {
-            @apply border border-current overflow-x-auto leading-normal;
-            padding: 1.25em;
-        }
-        hr {
-            @apply bg-current border-0 h-px;
-            &:not(:first-child) {
-                margin-top: 2.5rem;
-            }
-            &:not(:last-child) {
-                margin-bottom: 2.5rem;
-            }
-        }
-        figcaption {
-            @apply leading-normal;
-            font-size: 0.875em;
-            margin: 0.5rem 0 0;
-        }
-        table {
-            @apply border border-current border-collapse text-left w-full;
-        }
-        caption {
-            @apply text-left;
-            font-size: 0.875em;
-            margin: 0 0 0.5rem;
-        }
-        th,
-        td {
-            @apply border-r border-b border-current;
-            padding: 0.5em;
-        }
-        th {
-            font-weight: bold;
-        }
-    }
 
-    /* Buttons */
-    .sb-component-button {
-        @apply inline-flex justify-center items-center text-center border transition duration-200 ease-in hover:-translate-y-1;
-    }
-
-    /* Links */
-    .sb-component-link {
-        @apply inline-flex justify-center items-center text-center transition duration-200 ease-linear;
-    }
-    .sb-component-link-primary {
-        @apply text-primary hover:underline;
-    }
-    .sb-component-link-secondary {
-        @apply text-current hover:text-primary;
-    }
-
-    /* Form controls */
-    option {
-        color: initial;
-    }
-    .sb-checkbox:checked + .sb-label:before {
-        content: '\2713';
-    }
-
-    /* Image gallery */
-    .sb-image-strip-track {
-        min-width: 160rem;
-    }
-    .sb-image-strip-content {
-        min-width: 80rem;
-    }
-
-    /* Carousel */
-    .sb-carousel-dot {
-        @apply w-4 h-4 cursor-pointer;
-    }
-
-    .sb-carousel-tab-title {
-        @apply cursor-pointer opacity-40 max-w-xs;
-        display: -webkit-box;
-        line-height: 1.5;
-        max-height: 1.5em;
-        overflow-y: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-    }
-    .sb-carousel-tab-title-active {
-        @apply opacity-100;
-    }
-
-    /* Color palettes */
-    .bg-light-fg-dark,
-    .sb-card.bg-light-fg-dark {
-        @apply text-dark bg-light;
-        .sb-input,
-        .sb-select,
-        .sb-textarea {
-            @apply placeholder-dark/50;
-        }
-        .sb-component-button-primary {
-            @apply bg-primary border-primary text-light;
-        }
-        .sb-component-button-secondary {
-            @apply border-dark text-dark;
-        }
-        .sb-image-strip-wrap {
-            &:before,
-            &:after {
-                @apply from-transparent to-light;
-            }
-        }
-        .sb-divider,
-        .sb-footer-bottom {
-            @apply border-neutral;
-        }
-        .sb-carousel-prev,
-        .sb-carousel-next {
-            @apply bg-dark text-light;
-        }
-        .sb-carousel-dot {
-            @apply bg-dark/20;
-        }
-        .sb-carousel-dot-active {
-            @apply bg-dark;
-        }
-    }
-    .bg-neutral-fg-dark,
-    .sb-card.bg-neutral-fg-dark {
-        @apply text-dark bg-neutral;
-        .sb-input,
-        .sb-select,
-        .sb-textarea {
-            @apply placeholder-dark/50;
-        }
-        .sb-component-button-primary {
-            @apply bg-primary border-primary text-light;
-        }
-        .sb-component-button-secondary {
-            @apply border-dark text-dark;
-        }
-        .sb-image-strip-wrap {
-            &:before,
-            &:after {
-                @apply from-transparent to-neutral;
+            nav ul {
+                gap: 1rem;
             }
         }
-        .sb-divider,
-        .sb-footer-bottom {
-            @apply border-neutralAlt;
-        }
-        .sb-carousel-prev,
-        .sb-carousel-next {
-            @apply bg-dark text-light;
-        }
-        .sb-carousel-dot {
-            @apply bg-dark/20;
-        }
-        .sb-carousel-dot-active {
-            @apply bg-dark;
-        }
-    }
-    .bg-dark-fg-light,
-    .sb-card.bg-dark-fg-light {
-        @apply text-light bg-dark;
-        .sb-input,
-        .sb-select,
-        .sb-textarea {
-            @apply placeholder-light/50;
-        }
-        .sb-component-button-primary {
-            @apply bg-primary border-primary text-light;
-        }
-        .sb-component-button-secondary {
-            @apply border-light text-light;
-        }
-        .sb-image-strip-wrap {
-            &:before,
-            &:after {
-                @apply from-transparent to-dark;
-            }
-        }
-        .sb-divider,
-        .sb-footer-bottom {
-            @apply border-light/20;
-        }
-        .sb-carousel-prev,
-        .sb-carousel-next {
-            @apply bg-light text-dark;
-        }
-        .sb-carousel-dot {
-            @apply bg-light/20;
-        }
-        .sb-carousel-dot-active {
-            @apply bg-light;
-        }
-    }
-    /* Only for cards */
-    .bg-neutralAlt-fg-dark {
-        @apply text-dark bg-neutralAlt;
-        .sb-component-button-primary {
-            @apply bg-primary border-primary text-light;
-        }
-        .sb-component-button-secondary {
-            @apply border-dark text-dark;
-        }
-    }
-}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/placeholder.svg?height=40&width=40" alt="Fuji Client Logo">
+            <h2>Fuji Client</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="https://github.com">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
 
-@layer utilities {
-    .underline-line-through {
-        text-decoration-line: underline line-through
-    }
-    .sb-animate-slide-left {
-        animation-name: slideLeft;
-        animation-duration: var(--sb-slide-speed, 80s);
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-    }
-    @keyframes slideLeft {
-        from {
-            transform: translate3d(0,0,0)
-        }
-        to {
-            transform: translate3d(-50%,0,0)
-        }
-    }
-    .sb-animate-slide-right {
-        animation-name: slideRight;
-        animation-duration: var(--sb-slide-speed, 80s);
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-    }
-    @keyframes slideRight {
-        from {
-            transform: translate3d(-50%,0,0)
-        }
-        to {
-            transform: translate3d(0,0,0)
-        }
-    }
-}
+    <section class="hero">
+        <h1>Fuji Client 1.8.8</h1>
+        <p>Experience Minecraft like never before</p>
+        <a href="https://google.com" class="download-btn">Download Now</a>
+    </section>
+
+    <section id="features" class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <img src="/placeholder.svg?height=100&width=100" alt="Performance Icon">
+                <h3>High Performance</h3>
+                <p>Optimized for maximum FPS and smooth gameplay</p>
+            </div>
+            <div class="feature-card">
+                <img src="/placeholder.svg?height=100&width=100" alt="Customization Icon">
+                <h3>Full Customization</h3>
+                <p>Personalize your HUD and game settings</p>
+            </div>
+            <div class="feature-card">
+                <img src="/placeholder.svg?height=100&width=100" alt="Security Icon">
+                <h3>Anti-Cheat Compatible</h3>
+                <p>Play safely on all major servers</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Fuji Client. All rights reserved.</p>
+        <a href="https://google.com" class="download-btn" style="margin-top: 1rem;">Download Fuji Client 1.8.8</a>
+    </footer>
+</body>
+</html>
+        
